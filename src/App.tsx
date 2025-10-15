@@ -7,6 +7,8 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Conversations from "./pages/Conversations";
 import Teams from "./pages/Teams";
+import Analytics from "./pages/Analytics";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +25,8 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/conversations" element={<Conversations />} />
           <Route path="/teams" element={<Teams />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
