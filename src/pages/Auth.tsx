@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -70,6 +70,13 @@ const Auth = () => {
           <a href="#" className="text-sm text-[hsl(var(--primary))] hover:underline">
             Forgot password?
           </a>
+        </div>
+
+        <div className="mt-6 text-center text-sm">
+          <span className="text-muted-foreground">Don't have an account? </span>
+          <Link to="/signup" className="text-[hsl(var(--primary))] hover:underline font-medium">
+            Sign up
+          </Link>
         </div>
 
         <div className="mt-8 pt-6 border-t border-border text-center">
