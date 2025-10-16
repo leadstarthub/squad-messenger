@@ -6,6 +6,7 @@ import {
   Users, 
   BarChart3, 
   Settings,
+  Smartphone,
   LogOut 
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -20,6 +21,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Conversations", href: "/conversations", icon: MessageSquare },
+    { name: "Instances", href: "/instances", icon: Smartphone },
     { name: "Teams", href: "/teams", icon: Users },
     { name: "Analytics", href: "/analytics", icon: BarChart3 },
     { name: "Settings", href: "/settings", icon: Settings },

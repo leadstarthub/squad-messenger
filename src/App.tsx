@@ -10,6 +10,7 @@ import Conversations from "./pages/Conversations";
 import Teams from "./pages/Teams";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
+import Instances from "./pages/Instances";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/teams" element={<Teams />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/instances" element={<Instances />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
