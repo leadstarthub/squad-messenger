@@ -86,32 +86,6 @@ const Analytics = () => {
           </CardContent>
         </Card>
 
-        {/* Charts Placeholder */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Message Volume</CardTitle>
-              <CardDescription>Last 7 days</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="h-64 flex items-center justify-center bg-muted/30 rounded-lg">
-                <p className="text-muted-foreground">Chart visualization coming soon</p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Response Times</CardTitle>
-              <CardDescription>Average by hour</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="h-64 flex items-center justify-center bg-muted/30 rounded-lg">
-                <p className="text-muted-foreground">Chart visualization coming soon</p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </DashboardLayout>
   );

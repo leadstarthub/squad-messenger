@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
-import { Settings as SettingsIcon, Bell, Shield, Smartphone, Globe } from "lucide-react";
+import { Settings as SettingsIcon, Smartphone } from "lucide-react";
 
 const Settings = () => {
   return (
@@ -70,48 +70,9 @@ const Settings = () => {
             </CardContent>
           </Card>
 
-          {/* Notifications */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Bell className="w-5 h-5" />
-                Notifications
-              </CardTitle>
-              <CardDescription>Manage your notification preferences</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <Label htmlFor="emailNotif">Email Notifications</Label>
-                  <p className="text-xs text-muted-foreground">Receive updates via email</p>
-                </div>
-                <Switch id="emailNotif" defaultChecked />
-              </div>
-
-              <Separator />
-
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <Label htmlFor="pushNotif">Push Notifications</Label>
-                  <p className="text-xs text-muted-foreground">Browser notifications</p>
-                </div>
-                <Switch id="pushNotif" defaultChecked />
-              </div>
-
-              <Separator />
-
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <Label htmlFor="messageAlerts">Message Alerts</Label>
-                  <p className="text-xs text-muted-foreground">New message sounds</p>
-                </div>
-                <Switch id="messageAlerts" />
-              </div>
-            </CardContent>
-          </Card>
 
           {/* WhatsApp Integration */}
-          <Card className="lg:col-span-2">
+          <Card className="lg:col-span-3">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Smartphone className="w-5 h-5" />
@@ -142,69 +103,6 @@ const Settings = () => {
               </div>
 
               <Button className="w-full">Test Connection</Button>
-            </CardContent>
-          </Card>
-
-          {/* Security & Privacy */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Shield className="w-5 h-5" />
-                Security
-              </CardTitle>
-              <CardDescription>Manage security settings</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <Label htmlFor="twoFactor">Two-Factor Auth</Label>
-                  <p className="text-xs text-muted-foreground">Extra security layer</p>
-                </div>
-                <Switch id="twoFactor" />
-              </div>
-
-              <Separator />
-
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <Label htmlFor="sessionTimeout">Auto Logout</Label>
-                  <p className="text-xs text-muted-foreground">After 30 minutes</p>
-                </div>
-                <Switch id="sessionTimeout" defaultChecked />
-              </div>
-
-              <Separator />
-
-              <Button variant="outline" className="w-full">
-                View Login History
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Language & Region */}
-          <Card className="lg:col-span-3">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Globe className="w-5 h-5" />
-                Language & Region
-              </CardTitle>
-              <CardDescription>Customize your language and timezone</CardDescription>
-            </CardHeader>
-            <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="language">Language</Label>
-                <Input id="language" value="Portuguese (BR)" readOnly />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="timezone">Timezone</Label>
-                <Input id="timezone" value="America/Sao_Paulo (GMT-3)" readOnly />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="dateFormat">Date Format</Label>
-                <Input id="dateFormat" value="DD/MM/YYYY" readOnly />
-              </div>
             </CardContent>
           </Card>
         </div>
