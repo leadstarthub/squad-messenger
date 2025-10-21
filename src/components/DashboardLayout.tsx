@@ -8,6 +8,7 @@ import {
   Settings,
   Smartphone,
   Shield,
+  ClipboardList,
   LogOut 
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -25,6 +26,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     { name: "Instances", href: "/instances", icon: Smartphone },
     { name: "Teams", href: "/teams", icon: Users },
     { name: "Analytics", href: "/analytics", icon: BarChart3 },
+    { name: "Management", href: "/management", icon: ClipboardList },
     { name: "Admin", href: "/admin", icon: Shield },
     { name: "Settings", href: "/settings", icon: Settings },
   ];
