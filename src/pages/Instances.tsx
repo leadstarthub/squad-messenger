@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Plus, Smartphone, QrCode, Trash2 } from "lucide-react";
+import { Plus, Smartphone, QrCode, Trash2, RefreshCw } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import QRCode from "qrcode";
 
@@ -109,6 +109,48 @@ const Instances = () => {
     setIsDialogOpen(false);
     setCurrentQRCode(null);
     setNewInstanceName("");
+  };
+
+  const handleReconnect = async (instance: Instance) => {
+    setGeneratingQR(true);
+
+    try {
+      // Generate new QR code data for reconnection
+      const qrData = `whatsapp://connect?instance=${instance.id}&token=${Math.random().toString(36).substring(7)}`;
+      
+      // Generate QR code image
+      const qrCodeUrl = await QRCode.toDataURL(qrData, {
+        width: 300,
+        margin: 2,
+        color: {
+          dark: "#1F2937",
+          light: "#FFFFFF",
+        },
+      });
+
+      // Update instance with new QR code and pending status
+      setInstances(instances.map(inst => 
+        inst.id === instance.id 
+          ? { ...inst, status: "pending" as const, qrCode: qrCodeUrl }
+          : inst
+      ));
+
+      setCurrentQRCode(qrCodeUrl);
+      setIsDialogOpen(true);
+
+      toast({
+        title: "Reconnection Initiated",
+        description: "Scan the QR code to reconnect your WhatsApp instance",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to generate reconnection QR code",
+        variant: "destructive",
+      });
+    } finally {
+      setGeneratingQR(false);
+    }
   };
 
   const getStatusColor = (status: Instance["status"]) => {
@@ -244,6 +286,17 @@ const Instances = () => {
                     >
                       <QrCode className="w-4 h-4 mr-2" />
                       Show QR Code
+                    </Button>
+                  )}
+                  {instance.status === "disconnected" && (
+                    <Button 
+                      variant="outline" 
+                      className="w-full mt-2"
+                      onClick={() => handleReconnect(instance)}
+                      disabled={generatingQR}
+                    >
+                      <RefreshCw className="w-4 h-4 mr-2" />
+                      {generatingQR ? "Reconnecting..." : "Reconnect"}
                     </Button>
                   )}
                 </div>
