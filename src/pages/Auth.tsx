@@ -18,15 +18,15 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[hsl(var(--primary))]/5 via-background to-background p-4">
-      <Card className="w-full max-w-md p-8 shadow-[var(--shadow-elegant)] animate-fade-in">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[hsl(var(--primary))] mb-4">
-            <MessageSquare className="w-8 h-8 text-white" />
+      <Card className="w-full max-w-md p-6 md:p-8 shadow-[var(--shadow-elegant)] animate-fade-in">
+        <div className="text-center mb-6 md:mb-8">
+          <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-[hsl(var(--primary))] mb-4">
+            <MessageSquare className="w-6 h-6 md:w-8 md:h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-foreground">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground">
             Welcome to Team<span className="text-[hsl(var(--primary))]">Chat</span>
           </h1>
-          <p className="text-muted-foreground mt-2">
+          <p className="text-sm md:text-base text-muted-foreground mt-2">
             Sign in to manage your team communications
           </p>
         </div>

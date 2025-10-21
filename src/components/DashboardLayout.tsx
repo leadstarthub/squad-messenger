@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { 
   LayoutDashboard, 
@@ -9,9 +9,12 @@ import {
   Smartphone,
   Shield,
   ClipboardList,
-  LogOut 
+  LogOut,
+  Menu,
+  X
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -19,6 +22,7 @@ interface DashboardLayoutProps {
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -35,8 +39,38 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
   return (
     <div className="flex min-h-screen w-full bg-background">
+      {/* Mobile Menu Button */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-[hsl(var(--sidebar-background))] border-b border-[hsl(var(--sidebar-border))] p-4">
+        <div className="flex items-center justify-between">
+          <h1 className="text-xl font-bold text-[hsl(var(--sidebar-foreground))]">
+            Team<span className="text-[hsl(var(--sidebar-primary))]">Chat</span>
+          </h1>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-[hsl(var(--sidebar-foreground))]"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </Button>
+        </div>
+      </div>
+
+      {/* Mobile Overlay */}
+      {mobileMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/50 z-40"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-[hsl(var(--sidebar-background))] border-r border-[hsl(var(--sidebar-border))] flex flex-col">
+      <aside
+        className={cn(
+          "fixed lg:sticky top-0 h-screen w-64 bg-[hsl(var(--sidebar-background))] border-r border-[hsl(var(--sidebar-border))] flex flex-col z-40 transition-transform duration-300",
+          mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        )}
+      >
         <div className="p-6 border-b border-[hsl(var(--sidebar-border))]">
           <h1 className="text-2xl font-bold text-[hsl(var(--sidebar-foreground))]">
             Team<span className="text-[hsl(var(--sidebar-primary))]">Chat</span>
@@ -46,13 +80,14 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </p>
         </div>
 
-        <nav className="flex-1 p-4 space-y-1">
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {navigation.map((item) => {
             const Icon = item.icon;
             return (
               <Link
                 key={item.name}
                 to={item.href}
+                onClick={() => setMobileMenuOpen(false)}
                 className={cn(
                   "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200",
                   isActive(item.href)
@@ -76,7 +111,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto w-full lg:w-auto pt-16 lg:pt-0">
         {children}
       </main>
     </div>

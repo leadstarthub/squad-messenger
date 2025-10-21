@@ -10,13 +10,13 @@ import { Settings as SettingsIcon, Smartphone } from "lucide-react";
 const Settings = () => {
   return (
     <DashboardLayout>
-      <div className="p-8 space-y-8 animate-fade-in">
+      <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 animate-fade-in">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Settings</h1>
-          <p className="text-muted-foreground mt-2">Manage your account and application preferences</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground">Settings</h1>
+          <p className="text-sm md:text-base text-muted-foreground mt-2">Manage your account and application preferences</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Account Settings */}
           <Card className="lg:col-span-2">
             <CardHeader>
@@ -27,42 +27,42 @@ const Settings = () => {
               <CardDescription>Update your personal information</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" placeholder="Rogério" />
+                  <Label htmlFor="firstName" className="text-sm">First Name</Label>
+                  <Input id="firstName" placeholder="Rogério" className="text-sm" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" placeholder="Silva" />
+                  <Label htmlFor="lastName" className="text-sm">Last Name</Label>
+                  <Input id="lastName" placeholder="Silva" className="text-sm" />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="rogerio@company.com" />
+                <Label htmlFor="email" className="text-sm">Email</Label>
+                <Input id="email" type="email" placeholder="rogerio@company.com" className="text-sm" />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number</Label>
-                <Input id="phone" type="tel" placeholder="+55 11 98765-4321" />
+                <Label htmlFor="phone" className="text-sm">Phone Number</Label>
+                <Input id="phone" type="tel" placeholder="+55 11 98765-4321" className="text-sm" />
               </div>
 
               <Separator />
 
               <div className="space-y-2">
-                <Label htmlFor="currentPassword">Current Password</Label>
-                <Input id="currentPassword" type="password" />
+                <Label htmlFor="currentPassword" className="text-sm">Current Password</Label>
+                <Input id="currentPassword" type="password" className="text-sm" />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="newPassword">New Password</Label>
-                  <Input id="newPassword" type="password" />
+                  <Label htmlFor="newPassword" className="text-sm">New Password</Label>
+                  <Input id="newPassword" type="password" className="text-sm" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="confirmPassword">Confirm Password</Label>
-                  <Input id="confirmPassword" type="password" />
+                  <Label htmlFor="confirmPassword" className="text-sm">Confirm Password</Label>
+                  <Input id="confirmPassword" type="password" className="text-sm" />
                 </div>
               </div>
 
@@ -82,13 +82,13 @@ const Settings = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="apiUrl">Evolution API URL</Label>
-                <Input id="apiUrl" placeholder="https://api.evolution.com" />
+                <Label htmlFor="apiUrl" className="text-sm">Evolution API URL</Label>
+                <Input id="apiUrl" placeholder="https://api.evolution.com" className="text-sm" />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="apiKey">API Key</Label>
-                <Input id="apiKey" type="password" placeholder="••••••••••••••••" />
+                <Label htmlFor="apiKey" className="text-sm">API Key</Label>
+                <Input id="apiKey" type="password" placeholder="••••••••••••••••" className="text-sm" />
               </div>
 
               <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">

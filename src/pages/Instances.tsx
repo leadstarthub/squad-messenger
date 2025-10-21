@@ -166,20 +166,21 @@ const Instances = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-8">
-        <div className="flex items-center justify-between mb-8">
+      <div className="p-4 md:p-6 lg:p-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 md:mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">WhatsApp Instances</h1>
-            <p className="text-muted-foreground mt-2">
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground">WhatsApp Instances</h1>
+            <p className="text-sm md:text-base text-muted-foreground mt-2">
               Manage your WhatsApp connections and instances
             </p>
           </div>
 
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="gap-2">
+              <Button className="gap-2 w-full sm:w-auto">
                 <Plus className="w-4 h-4" />
-                Add Instance
+                <span className="hidden sm:inline">Add Instance</span>
+                <span className="sm:hidden">Add</span>
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
@@ -235,7 +236,7 @@ const Instances = () => {
           </Dialog>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {instances.map((instance) => (
             <Card key={instance.id} className="hover-lift">
               <CardHeader>

@@ -118,10 +118,10 @@ const Management = () => {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6">
+      <div className="p-4 md:p-6 lg:p-8 space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">Team Management</h1>
-          <p className="text-muted-foreground mt-2">
+          <h1 className="text-2xl md:text-3xl font-bold">Team Management</h1>
+          <p className="text-sm md:text-base text-muted-foreground mt-2">
             Monitor team members' connection status and activity
           </p>
         </div>
@@ -136,17 +136,17 @@ const Management = () => {
               View connection status, messages, and activity for all team members
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Member</TableHead>
-                  <TableHead>Team</TableHead>
-                  <TableHead>Role</TableHead>
-                  <TableHead>Instance</TableHead>
-                  <TableHead>Connection</TableHead>
-                  <TableHead>Messages Today</TableHead>
-                  <TableHead>Last Active</TableHead>
+                  <TableHead className="min-w-[180px]">Member</TableHead>
+                  <TableHead className="min-w-[120px]">Team</TableHead>
+                  <TableHead className="min-w-[100px]">Role</TableHead>
+                  <TableHead className="min-w-[120px]">Instance</TableHead>
+                  <TableHead className="min-w-[120px]">Connection</TableHead>
+                  <TableHead className="min-w-[100px]">Messages</TableHead>
+                  <TableHead className="min-w-[120px]">Last Active</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

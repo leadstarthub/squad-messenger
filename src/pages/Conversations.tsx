@@ -26,15 +26,15 @@ const Conversations = () => {
 
   return (
     <DashboardLayout>
-      <div className="flex h-screen">
+      <div className="flex h-[calc(100vh-64px)] lg:h-screen flex-col lg:flex-row">
         {/* Conversation List */}
-        <div className="w-96 border-r border-border bg-card flex flex-col">
-          <div className="p-4 border-b border-border">
+        <div className="w-full lg:w-96 border-b lg:border-r lg:border-b-0 border-border bg-card flex flex-col max-h-[40vh] lg:max-h-none">
+          <div className="p-3 md:p-4 border-b border-border">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 placeholder="Search conversations..."
-                className="pl-10 bg-background"
+                className="pl-10 bg-background text-sm"
               />
             </div>
           </div>
@@ -44,31 +44,31 @@ const Conversations = () => {
               <div
                 key={conv.id}
                 onClick={() => setSelectedChat(conv.id)}
-                className={`p-4 cursor-pointer transition-colors border-b border-border hover:bg-muted/50 ${
+                className={`p-3 md:p-4 cursor-pointer transition-colors border-b border-border hover:bg-muted/50 ${
                   selectedChat === conv.id ? "bg-muted" : ""
                 }`}
               >
-                <div className="flex items-start gap-3">
-                  <Avatar>
-                    <AvatarFallback className="bg-[hsl(var(--primary))] text-white">
+                <div className="flex items-start gap-2 md:gap-3">
+                  <Avatar className="w-8 h-8 md:w-10 md:h-10">
+                    <AvatarFallback className="bg-[hsl(var(--primary))] text-white text-xs md:text-sm">
                       {conv.avatar}
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
-                      <h3 className="font-medium text-foreground truncate">
+                      <h3 className="font-medium text-sm md:text-base text-foreground truncate">
                         {conv.name}
                       </h3>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-xs text-muted-foreground flex-shrink-0">
                         {conv.time}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <p className="text-sm text-muted-foreground truncate">
+                      <p className="text-xs md:text-sm text-muted-foreground truncate">
                         {conv.lastMessage}
                       </p>
                       {conv.unread > 0 && (
-                        <span className="ml-2 px-2 py-0.5 text-xs font-medium bg-[hsl(var(--primary))] text-white rounded-full">
+                        <span className="ml-2 px-1.5 md:px-2 py-0.5 text-xs font-medium bg-[hsl(var(--primary))] text-white rounded-full flex-shrink-0">
                           {conv.unread}
                         </span>
                       )}
@@ -83,34 +83,34 @@ const Conversations = () => {
         {/* Chat Area */}
         <div className="flex-1 flex flex-col bg-[hsl(var(--chat-bg))]">
           {/* Chat Header */}
-          <div className="bg-card border-b border-border p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Avatar>
-                <AvatarFallback className="bg-[hsl(var(--primary))] text-white">
+          <div className="bg-card border-b border-border p-3 md:p-4 flex items-center justify-between">
+            <div className="flex items-center gap-2 md:gap-3">
+              <Avatar className="w-8 h-8 md:w-10 md:h-10">
+                <AvatarFallback className="bg-[hsl(var(--primary))] text-white text-xs md:text-sm">
                   {conversations[selectedChat].avatar}
                 </AvatarFallback>
               </Avatar>
               <div>
-                <h2 className="font-medium text-foreground">
+                <h2 className="font-medium text-sm md:text-base text-foreground">
                   {conversations[selectedChat].name}
                 </h2>
                 <p className="text-xs text-green-600">Online</p>
               </div>
             </div>
-            <Button variant="ghost" size="icon">
-              <MoreVertical className="w-5 h-5" />
+            <Button variant="ghost" size="icon" className="w-8 h-8 md:w-10 md:h-10">
+              <MoreVertical className="w-4 h-4 md:w-5 md:h-5" />
             </Button>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6 space-y-3 md:space-y-4">
             {messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`flex ${msg.sent ? "justify-end" : "justify-start"} animate-slide-in`}
               >
-                <div className={`max-w-md ${msg.sent ? "chat-bubble-sent" : "chat-bubble-received"} px-4 py-2 shadow-sm`}>
-                  <p className="text-sm">{msg.text}</p>
+                <div className={`max-w-[85%] sm:max-w-md ${msg.sent ? "chat-bubble-sent" : "chat-bubble-received"} px-3 md:px-4 py-2 shadow-sm`}>
+                  <p className="text-xs md:text-sm break-words">{msg.text}</p>
                   <p className={`text-xs mt-1 ${msg.sent ? "text-white/70" : "text-muted-foreground"}`}>
                     {msg.time}
                   </p>
@@ -120,22 +120,22 @@ const Conversations = () => {
           </div>
 
           {/* Message Input */}
-          <div className="bg-card border-t border-border p-4">
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" size="icon">
-                <Smile className="w-5 h-5" />
+          <div className="bg-card border-t border-border p-2 md:p-3 lg:p-4">
+            <div className="flex items-center gap-1 md:gap-2">
+              <Button variant="ghost" size="icon" className="hidden sm:flex w-8 h-8 md:w-10 md:h-10">
+                <Smile className="w-4 h-4 md:w-5 md:h-5" />
               </Button>
-              <Button variant="ghost" size="icon">
-                <Paperclip className="w-5 h-5" />
+              <Button variant="ghost" size="icon" className="hidden sm:flex w-8 h-8 md:w-10 md:h-10">
+                <Paperclip className="w-4 h-4 md:w-5 md:h-5" />
               </Button>
               <Input
                 placeholder="Type a message..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="flex-1"
+                className="flex-1 text-sm md:text-base"
               />
-              <Button className="bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))]/90">
-                <Send className="w-5 h-5" />
+              <Button className="bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))]/90 w-8 h-8 md:w-10 md:h-10 p-0">
+                <Send className="w-4 h-4 md:w-5 md:h-5" />
               </Button>
             </div>
           </div>

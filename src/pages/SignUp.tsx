@@ -21,15 +21,15 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-4">
-      <Card className="w-full max-w-md p-8 space-y-6 animate-fade-in">
+      <Card className="w-full max-w-md p-6 md:p-8 space-y-6 animate-fade-in">
         <div className="text-center space-y-2">
           <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center">
-              <MessageSquare className="w-8 h-8 text-primary-foreground" />
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-primary rounded-2xl flex items-center justify-center">
+              <MessageSquare className="w-6 h-6 md:w-8 md:h-8 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight">Create Account</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Create Account</h1>
+          <p className="text-sm md:text-base text-muted-foreground">
             Join our WhatsApp management platform
           </p>
         </div>

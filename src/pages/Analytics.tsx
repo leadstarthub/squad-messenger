@@ -19,14 +19,14 @@ const Analytics = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-8 space-y-8 animate-fade-in">
+      <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 animate-fade-in">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Analytics</h1>
-          <p className="text-muted-foreground mt-2">Track performance and insights across all teams</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground">Analytics</h1>
+          <p className="text-sm md:text-base text-muted-foreground mt-2">Track performance and insights across all teams</p>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {stats.map((stat) => {
             const Icon = stat.icon;
             return (
@@ -61,16 +61,16 @@ const Analytics = () => {
             <CardDescription>Compare metrics across all teams</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               {teamPerformance.map((team) => (
-                <div key={team.team} className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
+                <div key={team.team} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 md:p-4 bg-muted/50 rounded-lg">
                   <div className="flex-1">
-                    <h3 className="font-medium text-foreground">{team.team}</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <h3 className="font-medium text-sm md:text-base text-foreground">{team.team}</h3>
+                    <p className="text-xs md:text-sm text-muted-foreground">
                       {team.messages.toLocaleString()} messages
                     </p>
                   </div>
-                  <div className="flex gap-8 text-sm">
+                  <div className="flex gap-4 sm:gap-6 md:gap-8 text-xs md:text-sm">
                     <div>
                       <p className="text-muted-foreground">Response Time</p>
                       <p className="font-medium text-foreground">{team.responseTime}</p>

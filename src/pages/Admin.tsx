@@ -93,15 +93,15 @@ const Admin = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-8 space-y-8 animate-fade-in">
+      <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 animate-fade-in">
         {/* Header */}
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-[hsl(var(--primary))]/10 flex items-center justify-center">
-            <Shield className="w-6 h-6 text-[hsl(var(--primary))]" />
+          <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[hsl(var(--primary))]/10 flex items-center justify-center">
+            <Shield className="w-5 h-5 md:w-6 md:h-6 text-[hsl(var(--primary))]" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Admin Management</h1>
-            <p className="text-muted-foreground mt-1">
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground">Admin Panel</h1>
+            <p className="text-sm md:text-base text-muted-foreground">
               Manage user roles and WhatsApp instance assignments
             </p>
           </div>
@@ -110,23 +110,23 @@ const Admin = () => {
         {/* User Role Management */}
         <Card className="border-border shadow-[var(--shadow-card)]">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
               <Users className="w-5 h-5" />
               User Role & Instance Assignment
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm">
               Assign roles to users and link operators to WhatsApp instances
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Role</TableHead>
-                  <TableHead>WhatsApp Instance</TableHead>
-                  <TableHead>Status</TableHead>
+                  <TableHead className="min-w-[150px]">Name</TableHead>
+                  <TableHead className="min-w-[180px]">Email</TableHead>
+                  <TableHead className="min-w-[140px]">Role</TableHead>
+                  <TableHead className="min-w-[200px]">WhatsApp Instance</TableHead>
+                  <TableHead className="min-w-[120px]">Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -188,21 +188,21 @@ const Admin = () => {
         {/* Team Instance Assignment */}
         <Card className="border-border shadow-[var(--shadow-card)]">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
               <Smartphone className="w-5 h-5" />
               Team Instance Assignment
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm">
               Link teams to specific WhatsApp instances
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Team Name</TableHead>
-                  <TableHead>WhatsApp Instance</TableHead>
-                  <TableHead>Status</TableHead>
+                  <TableHead className="min-w-[150px]">Team Name</TableHead>
+                  <TableHead className="min-w-[200px]">WhatsApp Instance</TableHead>
+                  <TableHead className="min-w-[120px]">Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
