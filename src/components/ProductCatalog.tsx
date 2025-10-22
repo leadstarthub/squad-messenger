@@ -2,8 +2,15 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Search, Minus, Plus, ShoppingCart } from "lucide-react";
+import { Search, Minus, Plus, ShoppingCart, ClipboardList } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export interface Product {
   id: number;
@@ -11,6 +18,7 @@ export interface Product {
   description: string;
   price: number;
   image: string;
+  stock: number;
 }
 
 interface ProductCatalogProps {
@@ -18,16 +26,17 @@ interface ProductCatalogProps {
 }
 
 const mockProducts: Product[] = [
-  { id: 1, name: "Product A", description: "High quality product with premium features", price: 29.99, image: "/placeholder.svg" },
-  { id: 2, name: "Product B", description: "Affordable and reliable everyday item", price: 19.99, image: "/placeholder.svg" },
-  { id: 3, name: "Product C", description: "Professional grade tool for experts", price: 49.99, image: "/placeholder.svg" },
-  { id: 4, name: "Product D", description: "Compact and portable solution", price: 39.99, image: "/placeholder.svg" },
-  { id: 5, name: "Product E", description: "Premium quality with extended warranty", price: 59.99, image: "/placeholder.svg" },
+  { id: 1, name: "Product A", description: "High quality product with premium features", price: 29.99, image: "/placeholder.svg", stock: 15 },
+  { id: 2, name: "Product B", description: "Affordable and reliable everyday item", price: 19.99, image: "/placeholder.svg", stock: 8 },
+  { id: 3, name: "Product C", description: "Professional grade tool for experts", price: 49.99, image: "/placeholder.svg", stock: 22 },
+  { id: 4, name: "Product D", description: "Compact and portable solution", price: 39.99, image: "/placeholder.svg", stock: 5 },
+  { id: 5, name: "Product E", description: "Premium quality with extended warranty", price: 59.99, image: "/placeholder.svg", stock: 12 },
 ];
 
 const ProductCatalog = ({ onSendToChat }: ProductCatalogProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [quantities, setQuantities] = useState<Record<number, number>>({});
+  const [showSummary, setShowSummary] = useState(false);
 
   const filteredProducts = mockProducts.filter(product =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -96,10 +105,15 @@ const ProductCatalog = ({ onSendToChat }: ProductCatalogProps) => {
                     <p className="text-xs md:text-sm text-muted-foreground mb-2 line-clamp-2">
                       {product.description}
                     </p>
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center justify-between gap-2 mb-1">
                       <span className="text-sm md:text-base font-semibold text-foreground">
                         ${product.price.toFixed(2)}
                       </span>
+                      <span className="text-xs text-muted-foreground">
+                        Stock: {product.stock}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
                         <Button
                           size="icon"
@@ -118,6 +132,7 @@ const ProductCatalog = ({ onSendToChat }: ProductCatalogProps) => {
                           variant="outline"
                           className="h-7 w-7 md:h-8 md:w-8"
                           onClick={() => handleQuantityChange(product.id, 1)}
+                          disabled={quantity >= product.stock}
                         >
                           <Plus className="h-3 w-3 md:h-4 md:w-4" />
                         </Button>
@@ -148,14 +163,68 @@ const ProductCatalog = ({ onSendToChat }: ProductCatalogProps) => {
             <span className="text-base font-bold text-primary">${totalPrice.toFixed(2)}</span>
           </div>
         </div>
-        <Button
-          onClick={handleSendToChat}
-          disabled={selectedProducts.length === 0}
-          className="w-full"
-        >
-          <ShoppingCart className="mr-2 h-4 w-4" />
-          Send to Chat
-        </Button>
+        <div className="flex gap-2">
+          <Dialog open={showSummary} onOpenChange={setShowSummary}>
+            <DialogTrigger asChild>
+              <Button
+                variant="outline"
+                disabled={selectedProducts.length === 0}
+                className="flex-1"
+              >
+                <ClipboardList className="mr-2 h-4 w-4" />
+                Summary
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-md max-h-[80vh] overflow-hidden flex flex-col">
+              <DialogHeader>
+                <DialogTitle>Order Summary</DialogTitle>
+              </DialogHeader>
+              <ScrollArea className="flex-1 pr-4">
+                <div className="space-y-4">
+                  {selectedProducts.map(product => {
+                    const qty = quantities[product.id];
+                    const itemTotal = product.price * qty;
+                    return (
+                      <div key={product.id} className="border-b border-border pb-3">
+                        <div className="flex gap-3">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-16 h-16 object-cover rounded-md bg-muted"
+                          />
+                          <div className="flex-1">
+                            <h4 className="font-medium text-sm">{product.name}</h4>
+                            <div className="text-xs text-muted-foreground mt-1">
+                              <div>Quantity: {qty}</div>
+                              <div>Price: ${product.price.toFixed(2)}</div>
+                              <div className="font-semibold text-foreground mt-1">
+                                Total: ${itemTotal.toFixed(2)}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div className="pt-2">
+                    <div className="flex justify-between items-center text-base font-bold">
+                      <span>Total Price:</span>
+                      <span className="text-primary">${totalPrice.toFixed(2)}</span>
+                    </div>
+                  </div>
+                </div>
+              </ScrollArea>
+            </DialogContent>
+          </Dialog>
+          <Button
+            onClick={handleSendToChat}
+            disabled={selectedProducts.length === 0}
+            className="flex-1"
+          >
+            <ShoppingCart className="mr-2 h-4 w-4" />
+            Send
+          </Button>
+        </div>
       </div>
     </div>
   );
