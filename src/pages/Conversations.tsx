@@ -205,7 +205,7 @@ const Conversations = () => {
                     <ShoppingBag className="w-4 h-4 md:w-5 md:h-5" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="w-full sm:w-[400px] p-0">
+                <SheetContent side="right" className="w-full sm:w-[400px] p-0">
                   <ProductCatalog onSendToChat={handleSendProductOrder} />
                 </SheetContent>
               </Sheet>
