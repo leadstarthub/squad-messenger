@@ -174,9 +174,21 @@ const Conversations = () => {
                 <p className="text-xs text-green-600">Online</p>
               </div>
             </div>
-            <Button variant="ghost" size="icon" className="w-8 h-8 md:w-10 md:h-10">
-              <MoreVertical className="w-4 h-4 md:w-5 md:h-5" />
-            </Button>
+            <div className="flex items-center gap-1">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="w-8 h-8 md:w-10 md:h-10">
+                    <ShoppingBag className="w-4 h-4 md:w-5 md:h-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-full sm:w-[400px] p-0">
+                  <ProductCatalog onSendToChat={handleSendProductOrder} />
+                </SheetContent>
+              </Sheet>
+              <Button variant="ghost" size="icon" className="w-8 h-8 md:w-10 md:h-10">
+                <MoreVertical className="w-4 h-4 md:w-5 md:h-5" />
+              </Button>
+            </div>
           </div>
 
           {/* Messages */}
@@ -199,17 +211,6 @@ const Conversations = () => {
           {/* Message Input */}
           <div className="bg-card border-t border-border p-2 md:p-3 lg:p-4">
             <div className="flex items-center gap-1 md:gap-2">
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="w-8 h-8 md:w-10 md:h-10">
-                    <ShoppingBag className="w-4 h-4 md:w-5 md:h-5" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="w-full sm:w-[400px] p-0">
-                  <ProductCatalog onSendToChat={handleSendProductOrder} />
-                </SheetContent>
-              </Sheet>
-              
               <EmojiPicker onEmojiSelect={handleEmojiSelect}>
                 <Button variant="ghost" size="icon" className="hidden sm:flex w-8 h-8 md:w-10 md:h-10">
                   <Smile className="w-4 h-4 md:w-5 md:h-5" />
